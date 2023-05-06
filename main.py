@@ -73,33 +73,34 @@ def solve_sudoku(board):
     return solver.solve()
 
 # Example usage:
-board = [
-    [5, 3, 4, 0, 7, 0, 0, 0, 0],
-    [6, 0, 0, 1, 9, 5, 0, 0, 0],
-    [0, 9, 8, 0, 0, 0, 0, 6, 0],
-    [8, 0, 0, 0, 6, 0, 0, 0, 3],
-    [4, 0, 0, 8, 0, 3, 0, 0, 1],
-    [7, 0, 0, 0, 2, 0, 0, 0, 6],
-    [0, 6, 0, 0, 0, 0, 2, 8, 0],
-    [0, 0, 0, 4, 1, 9, 0, 0, 5],
-    [0, 0, 0, 0, 8, 0, 0, 7, 9],
-]
-
-solver = SudokuSolver(board)
-solution = solver.solve()
-
-if solution:
-    for row in solution:
-        print(row)
-else:
-    print("No solution found")
+# board = [
+#     [5, 3, 4, 0, 7, 0, 0, 0, 0],
+#     [6, 0, 0, 1, 9, 5, 0, 0, 0],
+#     [0, 9, 8, 0, 0, 0, 0, 6, 0],
+#     [8, 0, 0, 0, 6, 0, 0, 0, 3],
+#     [4, 0, 0, 8, 0, 3, 0, 0, 1],
+#     [7, 0, 0, 0, 2, 0, 0, 0, 6],
+#     [0, 6, 0, 0, 0, 0, 2, 8, 0],
+#     [0, 0, 0, 4, 1, 9, 0, 0, 5],
+#     [0, 0, 0, 0, 8, 0, 0, 7, 9],
+# ]
 
 n = int(input())
-grid = [[0 for _ in range(n)] for _ in range(n)]
+board = [[0 for _ in range(n)] for _ in range(n)]
 c = int(input())
 for _ in range(c):
     i, j, value = map(int, input().split())
     i -= 1
     j -= 1
-    grid[i][j] = value
+    board[i][j] = value
+
+solver = SudokuSolver(board)
+solution = solver.solve()
+
+if solution:
+    print("Solved board:")
+    for row in solution:
+        print(row)
+else:
+    print("No solution found")
 
