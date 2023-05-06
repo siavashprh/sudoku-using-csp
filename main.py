@@ -2,6 +2,7 @@ class SudokuSolver:
     def __init__(self, board):
         self.board = board
     
+    # Check if the Sudoku puzzle is complete. If so, return the solved puzzle. 
     def solve(self):
         if self.is_complete():
             return self.board
@@ -19,6 +20,8 @@ class SudokuSolver:
 
         return False
 
+    # Iterate over each cell in the board. If a cell is empty, return False to indicate that the puzzle is not complete.
+    # If all cells are filled, return True to indicate that the puzzle is complete.
     def is_complete(self):
         for row in range(9):
             for col in range(9):
@@ -26,6 +29,7 @@ class SudokuSolver:
                     return False
         return True
 
+    # Iterate over each cell in the board. If there are no empty cells, return None to indicate that all cells are assigned.
     def select_unassigned_variable(self):
         for row in range(9):
             for col in range(9):
@@ -33,6 +37,7 @@ class SudokuSolver:
                     return row, col
         return None
 
+    # define a set of all possible values for each cell in the board, then return a list of values that are not already used in the same row, column or box as the current cell.
     def get_ordered_domain_values(self, row, col):
         domain = {1, 2, 3, 4, 5, 6, 7, 8, 9}
         row_values = set(self.board[row])
@@ -46,6 +51,8 @@ class SudokuSolver:
         ])
         return list(domain - row_values - col_values - box_values)
 
+    # check if the value already appears in the same row. then check if the value already appears in the same column and then the same box.
+    # If the value does not appear in the same row, column or box, it is consistent with the current board state.
     def is_consistent(self, row, col, value):
         row_values = set(self.board[row])
         if value in row_values:
